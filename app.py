@@ -16,11 +16,6 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///data.db'
 app.secret_key = "rest python course"  # Strip this out of public code!
 api = Api(app)  # From flask-restful
 
-# Get SQLAlchemy to build tables in data.db for us
-@app.before_first_request
-def create_tables():
-    db.create_all()
-
 # Use the autheticate and identity functions we defined in 'security'
 # JWT creates a new endpoint, /auth
 # Data sent to /auth gets pushed to 'authenticate' function
