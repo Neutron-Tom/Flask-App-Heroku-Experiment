@@ -1,4 +1,6 @@
 #This version is deployed to Heroku
+import os
+
 from flask import Flask
 from flask_restful import Api
 from flask_jwt import JWT
@@ -12,7 +14,7 @@ app = Flask(__name__)
 # Turn off the FLASK SQLALCHEMY track modifications, not the one in actual SQLALCHEMY (ocnf
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 # Set the database location- this can be MySQL, Postgres, SQLITE
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///data.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', 'sqlite:///data.db')
 app.secret_key = "rest python course"  # Strip this out of public code!
 api = Api(app)  # From flask-restful
 
